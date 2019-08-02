@@ -1,0 +1,12 @@
+#uint16 because uint8 is char[] in Python
+uint32[] devices
+
+#Contains parameters for all led effects, but only the selected effect type parameters shall be provided
+LedEffectParams params
+#Duration of the effect, when the time is over the previous effect will be restored. 0 will make it display forever
+duration effectDuration
+
+#priority of the effect, 0 is no priority, 255 is max priority
+uint8 priority
+---
+---

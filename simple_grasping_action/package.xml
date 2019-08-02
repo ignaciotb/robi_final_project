@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+  <name>simple_grasping_action</name>
+  <version>1.0.1</version>
+  <description>
+    Simple grasping action that sits on top of a joint-space interpolating
+    controller exposing the FollowJointTrajectoryAction interface.
+
+    It exposes a FollowJointTrajectory action interface, and goals consist
+    of a trajectory to follow and an optional per-joint effort threshold.
+    Execution is considered successful when for every joint either the
+    desired trajectory has been traced or the effort threshold has been
+    reached.
+  </description>
+
+  <maintainer email="adolfo.rodriguez@pal-robotics.com">Adolfo Rodriguez Tsouroukdissian</maintainer>
+  <author email="adolfo.rodriguez@pal-robotics.com">Adolfo Rodriguez Tsouroukdissian</author>
+  <license>LGPL-3.0</license>
+  <url type="website">http://wiki.ros.org/simple_grasping_action</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>actionlib</run_depend>
+  <run_depend>control_msgs</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+
+</package>

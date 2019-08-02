@@ -1,0 +1,15 @@
+<launch>
+
+  <include file="$(find pmb2_rgbd_sensors)/launch/base_structure_sensor.launch"/>
+  <include file="$(find pmb2_rgbd_sensors)/launch/roof_structure_sensor.launch"/>
+  <include file="$(find pmb2_rgbd_sensors)/launch/elp_rgb_nodelet.launch"/>
+
+  <include file="$(find pal_pcl)/launch/floor_filter_base_roof.launch">
+    <arg name="robot" value="cobra"/>
+  </include>
+
+  <include file="$(find pmb2_laser_sensors)/launch/rgbd_cloud_laser.launch">
+    <arg name="cloud" value="floor_filter_xtion/filtered_cloud"/>
+  </include>
+
+</launch>

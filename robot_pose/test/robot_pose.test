@@ -1,0 +1,8 @@
+<launch>
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_odom" args="5 0 0 0 0 0 1 map odom" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="odom_to_baselink" args="5 0 0 0 0 0 1 odom base_footprint" />
+
+  <node name="robot_pose" pkg="robot_pose" type="robot_pose_node" output="screen"/>
+  <test test-name="robot_pose_test" pkg="robot_pose" type="robot_pose-test" time-limit="30.0"/>
+</launch>

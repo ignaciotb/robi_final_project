@@ -1,0 +1,10 @@
+# This service allows to change the object recognizer model
+
+# model_name: New object recognizer model name 
+string model_name
+
+# reset_desired_classes_param: reset the desired classes params for the new model
+bool reset_desired_classes_param
+---
+# status: provides the status info of the service call
+bool status

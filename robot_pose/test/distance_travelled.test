@@ -1,0 +1,4 @@
+<launch>
+  <node name="distance_travelled" pkg="robot_pose" type="distance_publisher_node"/>
+  <test test-name="distance_travelled_test" pkg="robot_pose" type="distance_travelled-test" time-limit="30.0"/>
+</launch>

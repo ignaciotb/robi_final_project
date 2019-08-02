@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <name>pal_wsg_gripper_description</name>
+  <version>0.0.9</version>
+  <description>URDF descripton of the PAL Schunk WSG gripper</description>
+
+  <author email="jordi.pages@pal-robotics.com">Jordi Pages</author>
+  <maintainer email="tiago-support@pal-robotics.com">TIAGo support team</maintainer>
+
+  <license>Proprietary</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>xacro</build_depend>
+  <run_depend>xacro</run_depend>
+
+</package>
+

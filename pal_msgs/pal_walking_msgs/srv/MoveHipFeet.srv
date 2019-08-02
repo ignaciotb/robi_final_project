@@ -1,0 +1,11 @@
+# This service requests that the robot move the hip and feet in cartesian space
+# The parameters are the waypoints and time to reach that poses
+
+geometry_msgs/PoseArray hip_poses
+
+geometry_msgs/PoseArray left_foot_poses
+
+geometry_msgs/PoseArray right_foot_poses
+
+duration[]              times_after_previous
+----
