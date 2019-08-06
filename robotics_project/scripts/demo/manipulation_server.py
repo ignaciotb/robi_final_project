@@ -194,20 +194,21 @@ class PickAndPlaceServer(object):
 		rospy.sleep(2.0)  # Removing is fast
 		rospy.loginfo("Adding new 'part' object")
 
+		object_pose.pose.position.z = object_pose.pose.position.z * 1.01
 		rospy.loginfo("Object pose: %s", object_pose.pose)
 		
                 #Add object description in scene
 		self.scene.add_box("part", object_pose, (self.object_depth, self.object_width, self.object_height))
 
-		rospy.loginfo("Second%s", object_pose.pose)
+		# rospy.loginfo("Second%s", object_pose.pose)
 		table_pose = copy.deepcopy(object_pose)
 
                 #define a virtual table below the object
-                table_height = object_pose.pose.position.z - self.object_width/2  
+                table_height = object_pose.pose.position.z + 0.1  
                 table_width  = 1.8
-                table_depth  = 0.5
+                table_depth  = 0.9
                 table_pose.pose.position.z += -(2*self.object_width)/2 -table_height/2
-                table_height -= 0.008 #remove few milimeters to prevent contact between the object and the table
+                # table_height -= 0.008 #remove few milimeters to prevent contact between the object and the table
 
 		self.scene.add_box("table", table_pose, (table_depth, table_width, table_height))
 
@@ -217,6 +218,7 @@ class PickAndPlaceServer(object):
 
                 # compute grasps
 		possible_grasps = self.sg.create_grasps_from_object_pose(object_pose)
+		# [len(possible_grasps)/2 - 10: len(possible_grasps)/2 + 10]
 		goal = createPickupGoal("arm_torso", "part", object_pose, possible_grasps, self.links_to_allow_contact)
 		
 		rospy.loginfo("Sending goal")
