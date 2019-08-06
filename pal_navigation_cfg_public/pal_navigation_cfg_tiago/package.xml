@@ -14,15 +14,15 @@
   <exec_depend>amcl</exec_depend>
   <exec_depend>fake_localization</exec_depend>
   <exec_depend>move_base</exec_depend>
-  <exec_depend>pal_local_planner</exec_depend>
+  <!-- <exec_depend>pal_local_planner</exec_depend> -->
   <exec_depend>dwa_local_planner</exec_depend>
   <exec_depend>global_planner</exec_depend>
   <exec_depend>navfn</exec_depend>
   <exec_depend>carrot_planner</exec_depend>
   <exec_depend>gmapping</exec_depend>
-  <exec_depend>pal_karto</exec_depend>
-  <exec_depend>pal_pcl</exec_depend>
-  <exec_depend>pal_vo_server</exec_depend>
+  <!-- <exec_depend>pal_karto</exec_depend> -->
+  <!-- <exec_depend>pal_pcl</exec_depend> -->
+  <!-- <exec_depend>pal_vo_server</exec_depend> -->
   <exec_depend>pal_navigation_sm</exec_depend>
   <exec_depend>rviz_plugin_covariance</exec_depend>
   <exec_depend>teb_local_planner</exec_depend>

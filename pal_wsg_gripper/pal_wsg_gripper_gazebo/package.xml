@@ -13,7 +13,7 @@
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>pal_hardware_gazebo</run_depend>
   <run_depend>pal_wsg_gripper_description</run_depend>
-  <run_depend>roboticsgroup_gazebo_plugins</run_depend>
+  <!-- <run_depend>roboticsgroup_gazebo_plugins</run_depend> -->
 
 </package>
 
