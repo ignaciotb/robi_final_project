@@ -252,11 +252,11 @@ class ManipulateAruco(object):
 		self.move_torso("lift")
 
 		# Raise arm
-		rospy.loginfo("Moving arm to a safe pose")
-		pmg = PlayMotionGoal()
-		pmg.motion_name = 'pick_final_pose'
-		pmg.skip_planning = False
-		self.play_m_as.send_goal_and_wait(pmg)
+		# rospy.loginfo("Moving arm to a safe pose")
+		# pmg = PlayMotionGoal()
+		# pmg.motion_name = 'pick_final_pose'
+		# pmg.skip_planning = False
+		# self.play_m_as.send_goal_and_wait(pmg)
 		rospy.loginfo("Raise object done.")
 
 	def aruco_pose_cb(self, aruco_pose_msg):
