@@ -5,6 +5,13 @@
   <arg name="gui" default="true"/>
   <arg name="debug" default="false"/>
   <arg name="recording" default="false"/>
+  <arg name="rviz"     default="true"/>
+    <arg name="public_sim"     default="True"/>
+<arg name="sim_sufix"     value="_public_sim"     if="$(arg public_sim)"/>
+  <arg name="sim_sufix"     value=""                unless="$(arg public_sim)"/>
+    <arg name="gzpose"         default="-x 2.40 -y -11.0 -z -0.003 -R 0.0 -P 0.0 -Y 70.0"/>
+    <arg name="robot" default="steel"/>
+
 
   <env name="GAZEBO_MODEL_PATH" value="$(find tiago_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)"/>
   <env name="LC_NUMERIC" value="C" />
@@ -16,5 +23,17 @@
     <arg name="debug" value="$(arg debug)"/>
     <arg name="recording" value="$(arg recording)"/>
   </include>
+
+      <include file="$(find tiago_gazebo)/launch/tiago_gazebo.launch">
+      <arg name="world"      value="$(arg world)"/>
+      <arg name="robot"      value="$(arg robot)"/>
+      <arg name="gzpose"     value="$(arg gzpose)"/>
+      <arg name="gui"        value="$(arg gui)"/>
+      <arg name="public_sim" value="$(arg public_sim)"/>
+      <arg name="recording"      value="$(arg recording)"/>
+    </include>
+
+  <!-- RVIZ -->
+  <node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)" args="-d $(find tiago_2dnav)/config/rviz/navigation$(arg sim_sufix).rviz"/> 
 
 </launch>
