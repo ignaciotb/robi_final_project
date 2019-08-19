@@ -3,11 +3,12 @@
 
   <arg name="world"  default="appartment"/>
   <arg name="gui" default="false"/>
-  <arg name="debug" default="true"/>
+  <arg name="debug" default="false"/>
   <arg name="verbose" default="true"/>
   <arg name="recording" default="false"/>
   <arg name="public_sim"     default="True"/>
   <arg name="sim_sufix"     value="_public_sim"     if="$(arg public_sim)"/>
+
 
   <env name="GAZEBO_MODEL_PATH" value="$(find tiago_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)"/>
   <env name="LC_NUMERIC" value="C" />
@@ -25,3 +26,4 @@
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tiago_2dnav)/config/rviz/navigation$(arg sim_sufix).rviz"/> 
 
 </launch>
+
