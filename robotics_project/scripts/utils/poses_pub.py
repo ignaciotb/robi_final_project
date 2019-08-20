@@ -2,7 +2,6 @@
 
 import rospy
 from geometry_msgs.msg import PoseArray, PoseStamped
-from IPython import embed
 
 class NavPosesPublisher(object):
     def __init__(self):
