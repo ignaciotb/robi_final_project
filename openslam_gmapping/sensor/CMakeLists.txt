@@ -1,3 +1,0 @@
-add_subdirectory(sensor_base)
-add_subdirectory(sensor_odometry)
-add_subdirectory(sensor_range)
