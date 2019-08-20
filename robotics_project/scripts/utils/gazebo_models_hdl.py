@@ -37,8 +37,8 @@ class ModelsHandler(object):
 		spawn_model_prox = rospy.ServiceProxy(self.spawn_model_srv, SpawnModel)
 		spawn_model_prox("aruco_cube", sdffile, "/", initial_pose, "world")
 
-		rospy.on_shutdown(self.shutdown_cb)
-		rospy.spin()
+		# rospy.on_shutdown(self.shutdown_cb)
+		# rospy.spin()
 
     def shutdown_cb(self):
 		rospy.loginfo("%s: Calling gazebo delete_models", self.node_name)

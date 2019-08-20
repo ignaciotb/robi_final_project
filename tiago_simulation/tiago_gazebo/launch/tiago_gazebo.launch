@@ -28,10 +28,4 @@
     <arg name="use_moveit_camera" value="$(arg use_moveit_camera)"/>
   </include>
 
-  <!-- Spawn/delete demo models in Gazebo -->
-<!--   <node pkg="robotics_project" type="gazebo_models_hdl.py" name="gazebo_models_handler"
-    output="screen">
-    <param name="aruco_cube_sdf" value="$(find tiago_gazebo)/models/aruco_cube/aruco_cube.sdf"/>
-  </node> -->
-
 </launch>

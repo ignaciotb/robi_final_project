@@ -2,7 +2,7 @@
 <launch>
 
   <arg name="world"  default="appartment"/>
-  <arg name="gui" default="false"/>
+  <arg name="gui" default="true"/>
   <arg name="debug" default="false"/>
   <arg name="verbose" default="true"/>
   <arg name="recording" default="false"/>
