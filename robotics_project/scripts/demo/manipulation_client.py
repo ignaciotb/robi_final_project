@@ -19,6 +19,9 @@
 #   * Sam Pfeiffer
 #   * Job van Dieten
 #   * Jordi Pages
+# Contributors:
+#   * Ignacio Torroba 
+
 
 import rospy
 import time
@@ -197,7 +200,7 @@ class ManipulateAruco(object):
 			rospy.loginfo("Done!")
 
 			result = self.pick_as.get_result()
-			if str(moveit_error_dict[result.error_code]) != "SUCCESS":
+			if str(moveit_error_dict[result.error_code]) != "SUCCESS" and str(moveit_error_dict[result.error_code]) != "MOTION_PLAN_INVALIDATED_BY_ENVIRONMENT_CHANGE":
 				rospy.logerr("Failed to pick, not trying further")
 				success = False
 			else: 
@@ -210,11 +213,12 @@ class ManipulateAruco(object):
 
             # Place the object on table in front
 			rospy.loginfo("Placing aruco marker")
+			self.pick_g.object_pose.pose.position.z += 0.05 
 			self.place_as.send_goal_and_wait(self.pick_g)
 			rospy.loginfo("Done!")
 
 			result = self.place_as.get_result()
-			if str(moveit_error_dict[result.error_code]) != "SUCCESS":
+			if str(moveit_error_dict[result.error_code]) != "SUCCESS" and str(moveit_error_dict[result.error_code]) != "MOTION_PLAN_INVALIDATED_BY_ENVIRONMENT_CHANGE":
 				rospy.logerr("Failed to place, not trying further")
 				success = False
 			else: 	
@@ -252,11 +256,11 @@ class ManipulateAruco(object):
 		self.move_torso("lift")
 
 		# Raise arm
-		# rospy.loginfo("Moving arm to a safe pose")
-		# pmg = PlayMotionGoal()
-		# pmg.motion_name = 'pick_final_pose'
-		# pmg.skip_planning = False
-		# self.play_m_as.send_goal_and_wait(pmg)
+		rospy.loginfo("Moving arm to a safe pose")
+		pmg = PlayMotionGoal()
+		pmg.motion_name = 'pick_final_pose'
+		pmg.skip_planning = False
+		self.play_m_as.send_goal_and_wait(pmg)
 		rospy.loginfo("Raise object done.")
 
 	def aruco_pose_cb(self, aruco_pose_msg):
