@@ -58,9 +58,9 @@ install(PROGRAMS
   scripts/behaviour_trees/bt_students.py
   scripts/utils/poses_pub.py
   scripts/utils/gazebo_models_hdl.py
-  scripts/demo/grasps_server.py
-  scripts/demo/manipulation_client.py
-  scripts/demo/manipulation_server.py
+  scripts/utils/grasps_server.py
+  scripts/utils/manipulation_client.py
+  scripts/utils/manipulation_server.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 

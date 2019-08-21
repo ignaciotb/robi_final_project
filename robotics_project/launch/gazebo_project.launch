@@ -8,9 +8,14 @@
   <arg name="recording" default="false"/>
   <arg name="public_sim"     default="True"/>
   <arg name="sim_sufix"     value="_public_sim"     if="$(arg public_sim)"/>
-  <arg name="gzpose"         default="-x 2.40 -y -11.0 -z -0.003 -R 0.0 -P 0.0 -Y 70.0"/>
   <arg name="robot" default="steel"/>
 
+  <!-- Robot pose in Gazebo for initial demo -->
+  <arg name="gzpose"         default="-x -0.3343 -y -0.0321 -z -0.0012 -R -0.005 -P 0.00322 -Y -0.8355"/>
+  <!-- Robot pose in Gazebo for Tasks E and C -->
+  <!-- <arg name="gzpose"         default="-x -1.146 -y -6.145 -z -0.001 -R -0.002 -P 0.001 -Y -1.593"/> -->
+  <!-- Robot pose in Gazebo for Task A -->
+  <!-- <arg name="gzpose"     default="-x 2.40 -y -11.0 -z -0.003 -R 0.0 -P 0.0 -Y 70.0"/> -->
 
   <env name="GAZEBO_MODEL_PATH" value="$(find tiago_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)"/>
   <env name="LC_NUMERIC" value="C" />

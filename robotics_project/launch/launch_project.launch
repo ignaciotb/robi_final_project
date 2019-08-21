@@ -13,6 +13,13 @@
   <env name="PAL_HOST"            value="tiago" />
   <env name="LC_NUMERIC"          value="C" />
 
+  <!-- Robot pose in Gazebo for initial demo -->
+  <arg name="gzpose"         default="-x -0.3343 -y -0.0321 -z -0.0012 -R -0.005 -P 0.00322 -Y -0.8355"/>
+  <!-- Robot pose in Gazebo for Tasks E and C -->
+  <!-- <arg name="gzpose"         default="-x -1.146 -y -6.145 -z -0.001 -R -0.002 -P 0.001 -Y -1.593"/> -->
+  <!-- Robot pose in Gazebo for Task A -->
+  <!-- <arg name="gzpose"     default="-x 2.40 -y -11.0 -z -0.003 -R 0.0 -P 0.0 -Y 70.0"/> -->
+
   <!-- Navigation -->
   <arg name="provide_map"     default="false"/>
   <arg name="localization"    default="amcl"/>
@@ -20,13 +27,8 @@
   <arg name="global_planner"  default="navfn"/>
   <arg name="local_planner"   default="eband"/>
   <arg name="planner"         default="base"/>
-  <!-- Robot pose in Gazebo for initial demo -->
-  <arg name="gzpose"         default="-x -0.3343 -y -0.0321 -z -0.0012 -R -0.005 -P 0.00322 -Y -0.8355"/>
-  <!-- Robot pose in Gazebo for Tasks E and C -->
-  <!-- <arg name="gzpose"         default="-x -1.146 -y -6.145 -z -0.001 -R -0.002 -P 0.001 -Y -1.593"/> -->
-  <!-- Robot pose in Gazebo for Task A -->
-  <!-- <arg name="gzpose"     default="-x 2.40 -y -11.0 -z -0.003 -R 0.0 -P 0.0 -Y 70.0"/> -->
- 
+  
+
   <!-- Simulation -->
   <arg name="robot"       default="steel"/>
   <arg name="rviz"        default="true"/>
@@ -38,18 +40,13 @@
   <!-- Definitions of pregrasp motion -->
   <rosparam command="load" file="$(find robotics_project)/config/pick_motions.yaml" /> 
 
+<!--   <node pkg="rosservice" type="rosservice" name="set_robot_pose" output="screen" args="call /gazebo/set_model_state '{model_state: { model_name: tiago_steel, pose: { position: { x: 2.40, y: -11.0, z: -0.003 }, orientation: {x: 0, y: 0, z: 0.5735764, w: 0.819152 } }, twist: { linear: {x: 0 , y: 0, z: 0 } , angular: { x: 0, y: 0, z: 0 } } , reference_frame: map } }'" />
+ -->
+<!--   <node pkg="rosservice" type="rosservice" name="set_cube_pose" output="screen" args="call /gazebo/set_model_state '{model_state: { model_name: aruco_cube, pose: { position: { x: -1.130530, y: -6.653650, z: 0.86250 }, orientation: {x: 0, y: 0, z: 0, w: 1 } }, twist: { linear: {x: 0 , y: 0, z: 0 } , angular: { x: 0, y: 0, z: 0 } } , reference_frame: map } }'" /> -->
+
   <!-- ROS NODES -->
 
   <group ns="$(arg namespace_tiago)">
-    <!-- Gazebo simulation and TIAgo components -->
-    <include file="$(find tiago_gazebo)/launch/tiago_gazebo.launch">
-      <arg name="world"       value="$(arg world)"/>
-      <arg name="robot"       value="$(arg robot)"/>
-      <arg name="gzpose"      value="$(arg gzpose)"/>
-      <arg name="gui"         value="$(arg gzclient)"/>
-      <arg name="public_sim"  value="$(arg public_sim)"/>
-      <arg name="recording"   value="$(arg recording)"/>
-    </include>
 
     <!-- Manual controller -->
     <!-- <node pkg="key_teleop" type="key_teleop.py" name="manual_controller" output="screen" launch-prefix="xterm -e">
@@ -139,8 +136,5 @@
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_path)/map.yaml"/>
     <node name="relay_map" pkg="topic_tools" type="relay" args="/map /vo_map"/>
   </group> -->
-
-  <!-- RVIZ -->
-  <node name="rviz" pkg="rviz" type="rviz" if="$(arg rviz)" args="-d $(find tiago_2dnav)/config/rviz/navigation$(arg sim_sufix).rviz"/> 
 
 </launch>
