@@ -8,6 +8,8 @@
   <arg name="recording" default="false"/>
   <arg name="public_sim"     default="True"/>
   <arg name="sim_sufix"     value="_public_sim"     if="$(arg public_sim)"/>
+  <arg name="gzpose"         default="-x 2.40 -y -11.0 -z -0.003 -R 0.0 -P 0.0 -Y 70.0"/>
+  <arg name="robot" default="steel"/>
 
 
   <env name="GAZEBO_MODEL_PATH" value="$(find tiago_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)"/>
@@ -21,6 +23,22 @@
     <arg name="verbose" value="$(arg verbose)"/>
     <arg name="recording" value="$(arg recording)"/>
   </include>
+
+    <!-- Gazebo simulation and TIAgo components -->
+    <include file="$(find tiago_gazebo)/launch/tiago_gazebo.launch">
+      <arg name="world"      value="$(arg world)"/>
+      <arg name="robot"      value="$(arg robot)"/>
+      <arg name="gzpose"     value="$(arg gzpose)"/>
+      <arg name="gui"        value="$(arg gui)"/>
+      <arg name="public_sim" value="$(arg public_sim)"/>
+      <arg name="recording"      value="$(arg recording)"/>
+    </include>
+
+  <!-- Spawn/delete demo models in Gazebo -->
+  <node pkg="robotics_project" type="gazebo_models_hdl.py" name="gazebo_models_handler"
+    output="screen">
+    <param name="aruco_cube_sdf" value="$(find tiago_gazebo)/models/aruco_cube/aruco_cube.sdf"/>
+  </node>
   
   <!-- RVIZ -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tiago_2dnav)/config/rviz/navigation$(arg sim_sufix).rviz"/> 
