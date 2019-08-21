@@ -52,3 +52,15 @@ include_directories(
 
 install(DIRECTORY launch config
    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+install(PROGRAMS 
+  scripts/state_machines/sm_students.py
+  scripts/behaviour_trees/bt_students.py
+  scripts/utils/poses_pub.py
+  scripts/utils/gazebo_models_hdl.py
+  scripts/demo/grasps_server.py
+  scripts/demo/manipulation_client.py
+  scripts/demo/manipulation_server.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+
+
