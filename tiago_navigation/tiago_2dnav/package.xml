@@ -16,8 +16,6 @@
   <run_depend>global_planner</run_depend>
   <run_depend>eband_local_planner</run_depend>
   <run_depend>navfn</run_depend>
-  <run_depend>gmapping</run_depend>
-  <run_depend>pal_navigation_sm</run_depend>
   <run_depend>tiago_laser_sensors</run_depend>
   <run_depend>tiago_maps</run_depend>
   <run_depend>rviz_plugin_covariance</run_depend>
