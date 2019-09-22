@@ -2,6 +2,8 @@
 <launch>
 
   <!-- ROS PARAMETERS -->
+  <!-- Initial robot pose in Gazebo: change for levels A, C or E (F for demo)-->
+  <arg name="student_level"         default="F"/>
 
   <!-- System level -->
   <arg name="namespace_tiago"     default="/"/>
@@ -13,12 +15,6 @@
   <env name="PAL_HOST"            value="tiago" />
   <env name="LC_NUMERIC"          value="C" />
 
-  <!-- Robot pose in Gazebo for initial demo -->
-  <arg name="gzpose"         default="-x -0.3343 -y -0.0321 -z -0.0012 -R -0.005 -P 0.00322 -Y -0.8355"/>
-  <!-- Robot pose in Gazebo for Tasks E and C -->
-  <!-- <arg name="gzpose"         default="-x -1.146 -y -6.145 -z -0.001 -R -0.002 -P 0.001 -Y -1.593"/> -->
-  <!-- Robot pose in Gazebo for Task A -->
-  <!-- <arg name="gzpose"     default="-x 2.40 -y -11.0 -z -0.003 -R 0.0 -P 0.0 -Y 70.0"/> -->
 
   <!-- Navigation -->
   <arg name="provide_map"     default="false"/>
@@ -28,7 +24,6 @@
   <arg name="local_planner"   default="eband"/>
   <arg name="planner"         default="base"/>
   
-
   <!-- Simulation -->
   <arg name="robot"       default="steel"/>
   <arg name="rviz"        default="true"/>
@@ -40,12 +35,14 @@
   <!-- Definitions of pregrasp motion -->
   <rosparam command="load" file="$(find robotics_project)/config/pick_motions.yaml" /> 
 
-<!--   <node pkg="rosservice" type="rosservice" name="set_robot_pose" output="screen" args="call /gazebo/set_model_state '{model_state: { model_name: tiago_steel, pose: { position: { x: 2.40, y: -11.0, z: -0.003 }, orientation: {x: 0, y: 0, z: 0.5735764, w: 0.819152 } }, twist: { linear: {x: 0 , y: 0, z: 0 } , angular: { x: 0, y: 0, z: 0 } } , reference_frame: map } }'" />
- -->
-<!--   <node pkg="rosservice" type="rosservice" name="set_cube_pose" output="screen" args="call /gazebo/set_model_state '{model_state: { model_name: aruco_cube, pose: { position: { x: -1.130530, y: -6.653650, z: 0.86250 }, orientation: {x: 0, y: 0, z: 0, w: 1 } }, twist: { linear: {x: 0 , y: 0, z: 0 } , angular: { x: 0, y: 0, z: 0 } } , reference_frame: map } }'" /> -->
+  <!-- Robot re-spawners -->
+  <include file="$(find robotics_project)/launch/launch_robot.launch">
+    <arg name="level"     value="$(arg student_level)"/>
+  </include>
+
+  <node pkg="rosservice" type="rosservice" name="set_cube_pose" output="screen" args="call /gazebo/set_model_state '{model_state: { model_name: aruco_cube, pose: { position: { x: -1.130530, y: -6.653650, z: 0.86250 }, orientation: {x: 0, y: 0, z: 0, w: 1 } }, twist: { linear: {x: 0 , y: 0, z: 0 } , angular: { x: 0, y: 0, z: 0 } } , reference_frame: map } }'" />
 
   <!-- ROS NODES -->
-
   <group ns="$(arg namespace_tiago)">
 
     <!-- Manual controller -->
@@ -90,8 +87,10 @@
       <param name="place_pose_topic"    value=""/>
       <param name="aruco_pose_topic"    value=""/>
       <param name="cube_pose"           value="0.50306828716, 0.0245718046511, 0.915538062216, 0.0144467629456, 0.706141958739, 0.707257659069, -0.0306827123383"/>
-      <param name="base_frame"          value="" />
-      <param name="move_head_srv"       value="/$(arg namespace_project)/move_head_gui" />
+      <param name="robot_base_frame"          value="" />
+      <param name="move_head_srv"       value="/$(arg namespace_project)/move_head_gui"/>
+      <param name="amcl_estimate"  value="" />
+      <param name="move_base_feedback"  value="" />
     </node>
 
     <!-- Goal poses for navigation -->
@@ -109,25 +108,25 @@
       <param name="pick_srv"            value="/place_holder5"/>
       <param name="place_srv"           value="/place_holder6"/>
       <param name="move_head_srv"       value="/$(arg namespace_project)/move_head_gui"/>
-      <param name="pickup_marker_pose"  value="/place_holder7"/>
-      <param name="place_marker_pose"   value="/place_holder8"/>
+      <param name="pickup_marker_pose"  value="/place_holder8"/>
+      <param name="place_marker_pose"   value="/place_holder9"/>
     </node>
 
      <!-- Arm manipulation node -->
     <node pkg="robotics_project" name="manipulation_server" type="manipulation_server.py" output="screen">
         <rosparam command="load" file="$(find robotics_project)/config/pick_and_place_params.yaml" />
-        <param name="pickup_marker_pose"  value="/place_holder9" />
-        <param name="place_marker_pose"   value="/place_holder10" />
+        <param name="pickup_marker_pose"  value="/place_holder10" />
+        <param name="place_marker_pose"   value="/place_holder11" />
     </node>
 
     <!-- Aruco marker detector -->
 <!--     <node pkg="aruco_ros" type="single"  name="aruco_single" output="screen">
+        <param name="camera_frame"        value="xtion_rgb_optical_frame"/>
+        <param name="aruco_frame"        value="" />
         <remap from="/camera_info"        to="/xtion/rgb/camera_info" />
         <remap from="/image"              to="/xtion/rgb/image_rect_color" />
-        <param name="marker_pose_topic"   value="/place_holder11"/>
-        <param name="base_frame"          value="/base_footprint"/>
-        <param name="camera_frame"        value="xtion_rgb_optical_frame"/>
-        <param name="marker_frame"        value="aruco_frame" />
+        <param name="marker_pose_topic"   value="/place_holder12"/>
+        <param name="robot_base_frame"          value=""/>
     </node> -->
   </group>
 

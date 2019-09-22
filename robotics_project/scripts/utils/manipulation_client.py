@@ -200,7 +200,9 @@ class ManipulateAruco(object):
 			rospy.loginfo("Done!")
 
 			result = self.pick_as.get_result()
-			if str(moveit_error_dict[result.error_code]) != "SUCCESS" and str(moveit_error_dict[result.error_code]) != "MOTION_PLAN_INVALIDATED_BY_ENVIRONMENT_CHANGE":
+			if (str(moveit_error_dict[result.error_code]) != "SUCCESS"
+				and str(moveit_error_dict[result.error_code]) != "MOTION_PLAN_INVALIDATED_BY_ENVIRONMENT_CHANGE"
+				and str(moveit_error_dict[result.error_code]) != "CONTROL_FAILED"):
 				rospy.logerr("Failed to pick, not trying further")
 				success = False
 			else: 
@@ -218,7 +220,9 @@ class ManipulateAruco(object):
 			rospy.loginfo("Done!")
 
 			result = self.place_as.get_result()
-			if str(moveit_error_dict[result.error_code]) != "SUCCESS" and str(moveit_error_dict[result.error_code]) != "MOTION_PLAN_INVALIDATED_BY_ENVIRONMENT_CHANGE":
+			if (str(moveit_error_dict[result.error_code]) != "SUCCESS" 
+				and str(moveit_error_dict[result.error_code]) != "MOTION_PLAN_INVALIDATED_BY_ENVIRONMENT_CHANGE"
+				and str(moveit_error_dict[result.error_code]) != "CONTROL_FAILED"):
 				rospy.logerr("Failed to place, not trying further")
 				success = False
 			else: 	
