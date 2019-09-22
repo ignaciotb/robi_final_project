@@ -1,0 +1,14 @@
+# input_image: An optional image field, when given performs the recognition on the input_image
+# else, will perform the recognition on the recent captured image from robot's camera
+sensor_msgs/CompressedImage input_image
+---
+# image: The resultant image with recognized objects
+sensor_msgs/CompressedImage image
+
+# num_detections: The number of detected objects
+int16 num_detections
+
+# Send the found objects, see the msg files for docs
+pal_detection_msgs/RecognizedObjectArray recognized_objects
+---
+#no feedback

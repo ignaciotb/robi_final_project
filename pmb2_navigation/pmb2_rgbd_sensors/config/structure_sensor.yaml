@@ -1,0 +1,18 @@
+driver:
+    # Modes:
+    # check available modes at openni2_camera/cfg/OpenNI2.cfg
+    ir_mode   : 8
+    color_mode: 8
+    depth_mode: 8
+
+    # Skip #frames, so the frame rate turns into:
+    # frame_rate /= (1 + data_skip)
+    # which for mode #8 (30Hz) and data_skip = 4 gives:
+    # 30Hz / (1 + 5) = 30Hz / 6 = 5Hz
+    data_skip : 5
+
+depth_points:
+    range_max: &depth_range_max 4.0
+
+points_xyzrgb_hw_registered:
+    range_max: *depth_range_max

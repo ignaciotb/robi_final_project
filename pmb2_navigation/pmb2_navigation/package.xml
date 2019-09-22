@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pmb2_navigation</name>
+  <version>2.0.0</version>
+  <description>PMB2 navigation metapackage</description>
+  <maintainer email="jeremie.deray@pal-robotics.com">Jeremie Deray</maintainer>
+  <license>Apache License 2.0</license>
+  <author email="enrique.fernandez@pal-robotics.com">Enrique Fernandez</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>pmb2_2dnav</exec_depend>
+  <exec_depend>pmb2_maps</exec_depend>
+  <exec_depend>pmb2_laser_sensors</exec_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

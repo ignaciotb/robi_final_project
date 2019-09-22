@@ -1,0 +1,4 @@
+gains:
+  gripper_finger_joint: {p: 2000,  d: 0,  i: 0, p_gain: 2000}
+  gripper_right_finger_joint: {p: 2000,  d: 0,  i: 0, p_gain: 2000}
+

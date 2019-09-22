@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pal_simulation_msgs</name>
+  <version>0.12.13</version>
+  <description>
+    This package defines messages used to interact with the simulator.
+  </description>
+  <license>proprietary</license>
+  <maintainer email="alexander.sherikov@pal-robotics.com">Alexander Sherikov</maintainer>
+  <author email="alexander.sherikov@pal-robotics.com">Alexander Sherikov</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>message_generation</depend>
+  <depend>geometry_msgs</depend>
+</package>

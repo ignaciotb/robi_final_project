@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <arg name="side" default=""/>
+  <arg name="suffix" value="$(eval ('' if side == '' else '_' + side))"/>
+  <arg name="finger" default="left"/>
+  <!-- Force-torque sensors controller -->
+  <rosparam command="load" file="$(find pal_wsg_gripper_controller_configuration)/config/gripper$(arg suffix)_$(arg finger)_fingertip_sensor_controller.yaml" />
+
+  <!-- Controllers that come up started -->
+  <node name="bringup_controllers_spawner$(arg suffix)_$(arg finger)_fingertip"
+        pkg="controller_manager" type="spawner" output="screen"
+        args="gripper$(arg suffix)_$(arg finger)_fingertip_sensor_controller" />
+
+</launch>

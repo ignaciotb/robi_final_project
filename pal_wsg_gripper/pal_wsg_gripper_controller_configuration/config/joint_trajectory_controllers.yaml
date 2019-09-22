@@ -1,0 +1,9 @@
+gripper_controller:
+  type: "position_controllers/JointTrajectoryController"
+  joints:
+    - gripper_finger_joint
+
+  constraints:
+    goal_time: &goal_time_constraint 0.6
+    stopped_velocity_tolerance: &stopped_velocity_constraint 5.0
+

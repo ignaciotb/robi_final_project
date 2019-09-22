@@ -1,0 +1,7 @@
+## Service to change the name of an existing map
+
+string current_map_name
+string new_map_name
+---
+bool success
+string message

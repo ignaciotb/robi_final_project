@@ -1,0 +1,11 @@
+# This service requests that the robot step over an obstacle
+# The parameters specify parameters for modifying the step
+
+float64   step_length
+float64   step_time
+float64   step_height
+float64   z_lipm
+
+---
+
+string    result

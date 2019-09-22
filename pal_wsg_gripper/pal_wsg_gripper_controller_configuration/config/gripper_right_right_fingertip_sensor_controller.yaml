@@ -1,0 +1,3 @@
+gripper_right_right_fingertip_sensor_controller:
+  type: force_torque_sensor_controller/ForceTorqueSensorController
+  publish_rate: 50

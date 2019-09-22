@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <arg name="world"  default="appartment"/>
+  <arg name="gui" default="true"/>
+  <arg name="debug" default="false"/>
+  <arg name="verbose" default="true"/>
+  <arg name="recording" default="false"/>
+  <arg name="public_sim"     default="True"/>
+  <arg name="sim_sufix"     value="_public_sim"     if="$(arg public_sim)"/>
+  <arg name="robot" default="steel"/>
+
+  <!-- Robot pose in Gazebo for initial demo -->
+  <arg name="gzpose"         default="-x -0.3343 -y -0.0321 -z -0.0012 -R -0.005 -P 0.00322 -Y -0.8355"/>
+  <!-- Robot pose in Gazebo for Tasks E and C -->
+  <!-- <arg name="gzpose"         default="-x -1.146 -y -6.145 -z -0.001 -R -0.002 -P 0.001 -Y -1.593"/> -->
+  <!-- Robot pose in Gazebo for Task A -->
+  <!-- <arg name="gzpose"     default="-x 2.40 -y -11.0 -z -0.003 -R 0.0 -P 0.0 -Y 70.0"/> -->
+
+  <env name="GAZEBO_MODEL_PATH" value="$(find tiago_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)"/>
+  <env name="LC_NUMERIC" value="C" />
+
+  <!-- start up world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find tiago_gazebo)/worlds/$(arg world).world"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="verbose" value="$(arg verbose)"/>
+    <arg name="recording" value="$(arg recording)"/>
+  </include>
+
+    <!-- Gazebo simulation and TIAgo components -->
+    <include file="$(find tiago_gazebo)/launch/tiago_gazebo.launch">
+      <arg name="world"      value="$(arg world)"/>
+      <arg name="robot"      value="$(arg robot)"/>
+      <arg name="gzpose"     value="$(arg gzpose)"/>
+      <arg name="gui"        value="$(arg gui)"/>
+      <arg name="public_sim" value="$(arg public_sim)"/>
+      <arg name="recording"      value="$(arg recording)"/>
+    </include>
+
+  <!-- Spawn/delete demo models in Gazebo -->
+  <node pkg="robotics_project" type="gazebo_models_hdl.py" name="gazebo_models_handler"
+    output="screen">
+    <param name="aruco_cube_sdf" value="$(find tiago_gazebo)/models/aruco_cube/aruco_cube.sdf"/>
+  </node>
+  
+  <!-- RVIZ -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find tiago_2dnav)/config/rviz/navigation$(arg sim_sufix).rviz"/> 
+
+</launch>
+

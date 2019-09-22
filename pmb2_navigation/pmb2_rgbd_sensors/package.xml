@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pmb2_rgbd_sensors</name>
+  <version>2.0.0</version>
+  <description>PMB2-specific RGBD sensors launch and config files.</description>
+  <maintainer email="jeremie.deray@pal-robotics.com">Jeremie Deray</maintainer>
+  <maintainer email="procopio.stein@pal-robotics.com">Procopio Stein</maintainer>
+  <license>Apache License 2.0</license>
+  <author email="enrique.fernandez@pal-robotics.com">Enrique Fernandez</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>openni2_launch</exec_depend>
+  <!-- <exec_depend>pal-orbbec-openni2</exec_depend> -->
+  <exec_depend>uvc_camera</exec_depend>
+  <!-- <exec_depend>pal_pcl</exec_depend> -->
+  <!-- <exec_depend>pal_usb_utils</exec_depend> -->
+
+</package>

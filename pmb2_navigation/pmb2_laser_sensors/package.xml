@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pmb2_laser_sensors</name>
+  <version>2.0.0</version>
+  <description>PMB2-specific laser sensors launch and config files.</description>
+  <maintainer email="jeremie.deray@pal-robotics.com">Jeremie Deray</maintainer>
+  <maintainer email="procopio.stein@pal-robotics.com">Procopio Stein</maintainer>
+  <license>Apache License 2.0</license>
+  <author email="enrique.fernandez@pal-robotics.com">Enrique Fernandez</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- <exec_depend>hokuyo_node</exec_depend> -->
+  <exec_depend>sick_tim</exec_depend>
+  <exec_depend>depthimage_to_laserscan</exec_depend>
+  <exec_depend>pointcloud_to_laserscan</exec_depend>
+  <exec_depend>laser_filters</exec_depend>
+  <!-- <exec_depend>pal_filters</exec_depend> -->
+</package>

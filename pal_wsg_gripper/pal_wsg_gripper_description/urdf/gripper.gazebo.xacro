@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2018, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+  <xacro:macro name="parallel_fingers_joint" params="joint_name_to_mimic virtual_joint_name">
+    <gazebo>
+    <plugin name="mimic_${joint_name_to_mimic}_joint" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so">
+      <joint>${joint_name_to_mimic}_joint</joint>
+      <mimicJoint>${virtual_joint_name}_joint</mimicJoint>
+      <multiplier>1.0</multiplier>
+      <offset>0.0</offset>
+      <hasPID/>
+    </plugin>
+    </gazebo>
+
+    <!-- 
+    <gazebo reference="${joint_name_to_mimic}_link">
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <fdir1>0 0 0</fdir1>
+      <maxVel>1.0</maxVel>
+      <minDepth>0.1</minDepth>
+      <material>Gazebo/Black</material>
+    </gazebo>
+
+    <gazebo reference="${virtual_joint_name}_link">
+      <kp>1000000.0</kp>
+      <kd>1.0</kd>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <fdir1>0 0 0</fdir1>
+      <maxVel>1.0</maxVel>
+      <minDepth>0.1</minDepth>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    -->
+
+    <gazebo reference="${joint_name_to_mimic}_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
+      <provideFeedback>1</provideFeedback>
+    </gazebo>
+
+    <gazebo reference="${virtual_joint_name}_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
+      <provideFeedback>1</provideFeedback>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>
+
