@@ -130,9 +130,9 @@ public:
 
     nh.param<double>("marker_size", marker_size, 0.05);
     nh.param<int>("marker_id", marker_id, 582);
-    nh.param<std::string>("reference_frame", reference_frame, "");
+    nh.param<std::string>("robot_base_frame", reference_frame, "");
     nh.param<std::string>("camera_frame", camera_frame, "");
-    nh.param<std::string>("marker_frame", marker_frame, "");
+    nh.param<std::string>("aruco_frame", marker_frame, "");
     nh.param<bool>("image_is_rectified", useRectifiedImages, true);
     nh.param<bool>("rotate_marker_axis", rotate_marker_axis_, true);
 
