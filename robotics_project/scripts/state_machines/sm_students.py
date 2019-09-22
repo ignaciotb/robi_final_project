@@ -84,7 +84,7 @@ class StateMachine(object):
                 success_tucking = self.play_motion_ac.wait_for_result(rospy.Duration(100.0))
 
                 if success_tucking:
-                    rospy.loginfo("%s: Arm tucked.", self.node_name)
+                    rospy.loginfo("%s: Arm tuck: ", self.play_motion_ac.get_result())
                     self.state = 2
                 else:
                     self.play_motion_ac.cancel_goal()

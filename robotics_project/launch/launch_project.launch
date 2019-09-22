@@ -74,7 +74,7 @@
   </group>
 
   <group ns="$(arg namespace_project)">
-    <!-- Upper-level state machine -->
+    <!-- Mission planner -->
     <node pkg="robotics_project" type="sm_students.py" name="logic_state_machine" output="screen">
       <param name="global_loc_srv" value=""/>
       <param name="clear_costmaps_srv"  value=""/>
@@ -93,7 +93,7 @@
       <param name="move_base_feedback"  value="" />
     </node>
 
-    <!-- Goal poses for navigation -->
+    <!-- Goal robot poses for navigation -->
 <!--     <node pkg="robotics_project" type="poses_pub.py" name="poses_publisher" output="screen">
       <param name="pick_pose"         value="-1.1480, -6.1, -0.001, 0.0, 0.0, -0.709307863674, 0.70489882574"/>
       <param name="place_pose"        value="2.6009, -1.7615, 0.0, 0.0, 0.0, 0.0, 1"/>
