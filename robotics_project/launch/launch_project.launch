@@ -112,13 +112,6 @@
       <param name="place_marker_pose"   value="/place_holder9"/>
     </node>
 
-     <!-- Arm manipulation node -->
-    <node pkg="robotics_project" name="manipulation_server" type="manipulation_server.py" output="screen">
-        <rosparam command="load" file="$(find robotics_project)/config/pick_and_place_params.yaml" />
-        <param name="pickup_marker_pose"  value="/place_holder10" />
-        <param name="place_marker_pose"   value="/place_holder11" />
-    </node>
-
     <!-- Aruco marker detector -->
 <!--     <node pkg="aruco_ros" type="single"  name="aruco_single" output="screen">
         <param name="camera_frame"        value="xtion_rgb_optical_frame"/>
@@ -129,6 +122,15 @@
         <param name="robot_base_frame"          value=""/>
     </node> -->
   </group>
+
+  <!-- This node had to me moved out of the group to allow the move_group to build the PlanningSceneInterface() -->
+  <!-- Arm manipulation node -->
+  <node pkg="robotics_project" name="manipulation_server" type="manipulation_server.py" output="screen">
+      <rosparam command="load" file="$(find robotics_project)/config/pick_and_place_params.yaml" />
+      <param name="pickup_marker_pose"  value="/place_holder10" />
+      <param name="place_marker_pose"   value="/place_holder11" />
+  </node>
+
 
   <!-- Map providers -->
 <!--   <group if="$(arg provide_map)">
