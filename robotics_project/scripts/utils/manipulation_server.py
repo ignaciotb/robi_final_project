@@ -26,7 +26,7 @@
 import rospy
 from grasps_server import SphericalGrasps
 from actionlib import SimpleActionClient, SimpleActionServer
-from moveit_commander import PlanningSceneInterface
+from moveit_commander import MoveGroupCommander, PlanningSceneInterface
 from moveit_msgs.msg import Grasp, PickupAction, PickupGoal, PickupResult, MoveItErrorCodes
 from moveit_msgs.msg import PlaceAction, PlaceGoal, PlaceResult, PlaceLocation
 from geometry_msgs.msg import Pose, PoseStamped, PoseArray, Vector3Stamped, Vector3, Quaternion
@@ -116,11 +116,11 @@ class PickAndPlaceServer(object):
 			exit()
 		rospy.loginfo("%s: Connected to place action server", self.node_name)
 
-		self.scene = PlanningSceneInterface()
 		rospy.loginfo("Connecting to /get_planning_scene service")
 		self.scene_srv = rospy.ServiceProxy('/get_planning_scene', GetPlanningScene)
 		self.scene_srv.wait_for_service()
-		rospy.loginfo("Connected.")
+		self.scene = PlanningSceneInterface()
+		rospy.loginfo("Planning scene created.")
 
 		rospy.loginfo("Connecting to clear octomap service...")
 		self.clear_octomap_srv = rospy.ServiceProxy('/clear_octomap', Empty)
@@ -226,6 +226,15 @@ class PickAndPlaceServer(object):
 		result = self.pickup_ac.get_result()
 		rospy.logdebug("Using torso result: " + str(result))
 		rospy.loginfo("Pick result: " + str(moveit_error_dict[result.error_code.val]))
+
+                # Arm back to safe pose before moving on
+                rospy.loginfo("Moving arm to safe pose")
+                pick_final_points = rospy.get_param("/play_motion/motions/pick_final_pose/points")
+                final_pick_goal = pick_final_points[0]['positions']
+                
+                move_group = MoveGroupCommander("arm_torso")
+                move_group.go(final_pick_goal, wait=True)
+                move_group.stop()
 
 		# Remove table from world
 		self.scene.remove_world_object("table")

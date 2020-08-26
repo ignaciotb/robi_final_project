@@ -123,7 +123,7 @@
     </node> -->
   </group>
 
-  <!-- This node had to me moved out of the group to allow the move_group to build the PlanningSceneInterface() -->
+  <!-- This node had to me moved out of the group for the PlanningSceneInterface() to be constructed -->
   <!-- Arm manipulation node -->
   <node pkg="robotics_project" name="manipulation_server" type="manipulation_server.py" output="screen">
       <rosparam command="load" file="$(find robotics_project)/config/pick_and_place_params.yaml" />

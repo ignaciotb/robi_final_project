@@ -208,7 +208,7 @@ class ManipulateAruco(object):
 			else: 
 				success = True
 					
-			self.prepare_robot_nav()
+			#  self.prepare_robot_nav()
 			return success
 
 		if string_operation == "place":
