@@ -1,7 +1,6 @@
-# Robotics_intro
+# Mobile Manipulation Project
 
-Packages for the final project of the course DD2410 "Introduction to Robotics".
-Project based on the PAL Robotics platform TIAGo.
+Packages for the Assignment 5 of the course DD2410 "Introduction to Robotics".
 
 ## Install
 You need g++ with c++11 to compile this repo.
@@ -14,7 +13,7 @@ $ git clone "this_repo_link" "folder_name"
 $ cd 
 $ rosdep install --from-paths catkin_ws --ignore-src --rosdistro=$ROS_DISTRO -y
 $ cd ~/catkin_ws
-$ catkin_make -DCATKIN_ENABLE_TESTING=0
+$ catkin_make -DCATKIN_ENABLE_TESTING=0 -DCMAKE_BUILD_TYPE=RelWithDebInfo
 $ source devel/setup.bash
 ```
 ## Run
