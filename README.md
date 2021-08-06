@@ -4,6 +4,7 @@ Packages for the Assignment 5 of the course DD2410 "Introduction to Robotics".
 
 ## Install
 You need g++ with c++11 to compile this repo.
+Tested on Ubuntu 18.04 and ROS Melodic.
 Clone this repository inside your catkin workspace, install the dependencies, build it and run it.
 For these instructions, we'll assumed you have created a ws called catkin_ws. 
 Run the following commands in a terminal:
