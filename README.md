@@ -16,7 +16,12 @@ $ rosdep update
 $ rosdep install --from-paths catkin_ws --ignore-src --rosdistro=$ROS_DISTRO -y
 $ cd ~/catkin_ws
 $ catkin_make -DCATKIN_ENABLE_TESTING=0 -DCMAKE_BUILD_TYPE=RelWithDebInfo
-$ source devel/setup.bash
+
+Add this line at the end of your .bashrc file:
+export GAZEBO_MODEL_DATABASE_URI=http://models.gazebosim.org/
+
+$ source .bashrc
+$ source catkin_ws/devel/setup.bash
 ```
 ## Run
 In order to run the system:
